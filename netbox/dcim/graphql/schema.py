@@ -307,14 +307,6 @@ class DCIMQuery:
         queryset = RackRoleType.get_queryset(queryset, info)
         return list_resolver(info, queryset, filters)
 
-    rack_type: RackTypeType = strawberry_django.field()
-
-    @strawberry_django.field
-    def rack_type_list(self, info: Info, filters: RackTypeFilter | None = strawberry.UNSET) -> List[RackTypeType]:
-        queryset = RackTypeType.__strawberry_django_definition__.model.objects.all()
-        queryset = RackTypeType.get_queryset(queryset, info)
-        return list_resolver(info, queryset, filters)
-
     rear_port: RearPortType = strawberry_django.field()
 
     @strawberry_django.field
