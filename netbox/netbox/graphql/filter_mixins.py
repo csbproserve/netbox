@@ -125,8 +125,7 @@ def map_strawberry_type(field):
     elif issubclass(type(field), django_filters.TypedMultipleChoiceFilter):
         attr_type = FilterLookup[str] | None
     elif issubclass(type(field), django_filters.MultipleChoiceFilter):
-        should_create_function = True
-        attr_type = List[str] | None
+        attr_type = FilterLookup[str] | None
     elif issubclass(type(field), django_filters.TypedChoiceFilter):
         attr_type = FilterLookup[str] | None
     elif issubclass(type(field), django_filters.ChoiceFilter):
