@@ -109,7 +109,10 @@ def map_strawberry_type(field):
     elif issubclass(type(field), django_filters.NumberFilter):
         attr_type = ComparisonFilterLookup[int] | None
     elif issubclass(type(field), django_filters.ModelMultipleChoiceFilter):
-        attr_type = str | None
+        if (fieldname := getattr(field, "field_name")) and fieldname.endswith('_id'):
+            attr_type = int | None
+        else:
+            attr_type = str | None
     elif issubclass(type(field), django_filters.ModelChoiceFilter):
         attr_type = str | None
     elif issubclass(type(field), django_filters.DurationFilter):
